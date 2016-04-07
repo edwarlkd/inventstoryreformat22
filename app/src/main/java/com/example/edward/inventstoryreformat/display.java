@@ -27,7 +27,12 @@ public class display extends Activity{
 
     }
 
-    //if a button 'onOrganButton' is pressed
+    /*
+    If a button 'onOrganButton' is pressed, it takes the user to the 'Organization' display
+    where they can insert or edit stored items.
+    Parameter is of class View that we use to check on its id to see if it was
+    actually pressed by the user.
+     */
     public void onOrganButton(View v){
 
         //check if it's the button for Borganization(which is button to access Org.)
@@ -38,6 +43,11 @@ public class display extends Activity{
         }
     }
 
+    /*
+    Similarly, if 'Management' is pressed, it takes user to 'Management' portion.
+    Parameter is of class View that we use to check on its id to see if it was
+    actually pressed by the user.
+     */
     public void onManagButton(View v)
     {
         //check if it's the button for Borganization(which is button to access Org.)
