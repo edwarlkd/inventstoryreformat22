@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,5 +18,21 @@
         android:id="@+id/BAddInven"
         android:layout_gravity="right"
         android:onClick="onAddingButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select"
+        android:id="@+id/Bselect"
+        android:layout_gravity="right"
+        android:onClick="onSelectButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="(Here, there will be a table or sort to display inventory"
+        android:id="@+id/textView12"
+        android:layout_weight="0.34" />
 
 </LinearLayout>

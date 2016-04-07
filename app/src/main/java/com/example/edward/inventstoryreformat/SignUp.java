@@ -21,6 +21,11 @@ public class SignUp extends Activity {
         setContentView(R.layout.signup);
     }
 
+    /*
+    // 'onSignUpClick' function is enforced when the user select 'Sign Up' button on the main menu.
+    //Input parameter (View v) is used to check its id to see if it's a button for signup
+    //In sign up, it checks if the input pass1 and pass2 are equal. If so, then put it
+     */
     public void onSignUpClick(View v){
         if(v.getId()==R.id.BSignUpButton)
         {
@@ -64,7 +69,7 @@ public class SignUp extends Activity {
                 pass.show();
 
                 //'starting new activity.' To start, we need to make object of Intent class
-                //This takes back to the main menu.
+                //This takes back to the main menu after signing up is completed.
                 Intent i = new Intent(SignUp.this, MainActivity.class);
                 startActivity(i);
             }

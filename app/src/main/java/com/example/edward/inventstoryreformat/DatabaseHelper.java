@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "contacts.db";
+
     private static final String TABLE_NAME = "contacts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -20,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_PHONENUMBER = "phonenumber";
     private static final String COLUMN_UNAME = "uname";
     private static final String COLUMN_PASS = "pass";
+
 
     //decare database variable
     SQLiteDatabase db;
@@ -34,7 +36,53 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /*
+    This is for 'Sign Up'. Parameter is an object from class 'contact'
+    From the input object 'c', it gather the information from it and store it in the table
+    in the database.
+    */
     public void insertContact(contact c){
+
+        //to insert to the database, use 'getWrite...' to make connection
+        db = this.getWritableDatabase();
+        //create content values
+        ContentValues values = new ContentValues();
+
+        // '*' means everything
+        // fetch the data
+        String query = "select * from contacts";
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+
+        values.put(COLUMN_ID, count);
+        values.put(COLUMN_NAME, c.getName());
+        values.put(COLUMN_EMAIL, c.getEmail());
+        values.put(COLUMN_PHONENUMBER, c.getPhonenumber());
+        values.put(COLUMN_UNAME, c.getUname());
+        values.put(COLUMN_PASS, c.getPass());
+
+        //insert the data in 'values' to the specified table.
+        db.insert(TABLE_NAME, null, values);
+
+    }
+
+    /*
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "inventoryorg.db";
+    private static final String TABLE_NAME = "inventoryorg";
+    private static final String COLUMN_ITEMNAME = "itemname";
+    private static final String COLUMN_PRICE = "price";
+    private static final String COLUMN_QUANTITY = "quantity";
+    private static final String COLUMN_DESCRIPTION = "description";
+
+    //decare database variable
+    //SQLiteDatabase db2;
+
+    //create a table for to hold values.
+    private static final String TABLE_CREATE = "create table contacts (id integer primary key not null , " +
+            "name text not null , email text not null , phonenumber text not null , uname text not null , pass text not null);";
+
+    public void insertInventory(inventoryorg c){
 
         //to insert to the database, use 'getWrite...' to make connection
         db = this.getWritableDatabase();
@@ -49,16 +97,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
         values.put(COLUMN_ID, count);
-        values.put(COLUMN_NAME, c.getName());
-        values.put(COLUMN_EMAIL, c.getEmail());
-        values.put(COLUMN_PHONENUMBER, c.getPhonenumber());
-        values.put(COLUMN_UNAME, c.getUname());
-        values.put(COLUMN_PASS, c.getPass());
+        values.put(COLUMN_ITEMNAME, c.getItemname());
+        values.put(COLUMN_PRICE, c.getPrice());
+        values.put(COLUMN_QUANTITY, c.sgetQuantity());
+        values.put(COLUMN_DESCRIPTION, c.getDescription());
 
         db.insert(TABLE_NAME, null, values);
 
     }
+    */
 
+    /*
+    //This is for login; it checks the uname and search for matching password
+    Parameter is String uname, which stands for username.
+    The return value is the password matching to the username.
+    */
+    //used in MainActivity
     public String searchPass(String uname){
         db = this.getReadableDatabase();
         String query = "select uname, pass from " + TABLE_NAME;
@@ -70,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             do{
                 a = cursor.getString(0); //username
 
-                if(a.equals(uname)){ //if userinput 'uname' euqlas any value of username 'a' in the list
+                if(a.equals(uname)){ //if userinput 'uname' equals any value of username 'a' in the list
                     b = cursor.getString(1); //intialize the matching password to a variable 'b'
                     break;
                 }

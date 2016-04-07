@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /*
+    This function is for when 'Login' button is pressed in the main menu.
+    Parameter 'View' contains the button and we check its id to see if matches 'Blogin'
+    //If the username and password matches, it let them to log-in successfully, else it will
+    call an error message.
+    //If the input values are correct, it will take users to next display menu.
+     */
     public void onButtonClick(View v)
     {
         //now check if Blogin button is pressed or not.

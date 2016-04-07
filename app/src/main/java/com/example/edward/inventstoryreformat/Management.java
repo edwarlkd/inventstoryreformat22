@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 /**
  * Created by Edward on 4/5/2016.
+ * This is for Management portion of our application
+ * To be inserted after 'Organization' is completed first.
  */
 public class Management extends Activity {
     @Override

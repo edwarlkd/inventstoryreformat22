@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Edward on 4/5/2016.
  */
 public class OrgInsert extends Activity {
+
+    DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +20,49 @@ public class OrgInsert extends Activity {
         setContentView(R.layout.orginst);
     }
 
+    /*
+    This is to insert new items to the inventory.
+    Parameter View v is needed to check the display.
+    Once this button is pressed, it will send the data to the database.
+     */
     public void onSubmitButton(View v)
     {
+        //we read data from signup
+        EditText itemname = (EditText)findViewById(R.id.TFitemname);
+        EditText price = (EditText)findViewById(R.id.TFprice);
+        EditText quantity = (EditText)findViewById(R.id.TFquantity);
+        EditText description = (EditText)findViewById(R.id.TFdescription);
 
+        //convert them to string values
+        String itemnamestr = itemname.getText().toString();
+        String pricestr = price.getText().toString();
+        String quantitystr = quantity.getText().toString();
+        String descriptonstr= description.getText().toString();
+
+        //insert to the database
+        inventoryorg c = new inventoryorg();
+        c.setItemname(itemnamestr);
+        c.setPrice(pricestr);
+        c.setQuantity(quantitystr);
+        c.setDescription(descriptonstr);
+
+        //this one needs to be enforced.
+//        helper.insertInventory(c);
+
+        //popup message.
+        Toast pass = Toast.makeText(OrgInsert.this, "Successfully created.", Toast.LENGTH_SHORT);
+        pass.show();
+
+        //'starting new activity.' To start, we need to make object of Intent class
+        //This takes back to the 'Organization' after new data is inserted.
+        Intent i = new Intent(OrgInsert.this, Organization.class);
+        startActivity(i);
     }
 
+    /*
+    This is a simple function that takes the user to the previous display, which will be
+    first page of 'Organization portion'.
+     */
     public void onCancelButton(View v){
 
         //In 'OrgInsert' if the user cancelled out on inserting new item.

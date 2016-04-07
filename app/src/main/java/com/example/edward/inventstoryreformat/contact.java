@@ -3,6 +3,12 @@ package com.example.edward.inventstoryreformat;
 /**
  * Created by Edward on 4/4/2016.
  */
+
+
+/*
+This class is for login. It will be used to store data and work with 'DatabaseHelper' to
+upload them to the database.
+ */
 public class contact {
     int id;
     String name, email, phonenumber, uname, pass;
