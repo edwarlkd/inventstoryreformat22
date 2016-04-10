@@ -11,6 +11,7 @@ import android.content.Context;
  */
 public class DatabaseHelper extends SQLiteOpenHelper{
 
+    //contacts
     private static final String TABLE_CONTACTS = "contacts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -26,6 +27,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_ORGANIZATION_PRICE = "price";
     private static final String COLUMN_ORGANIZATION_QUANTITY = "quantity";
     private static final String COLUMN_ORGANIZATION_DESCRIPTION = "description";
+
+    //management
+    private static final String TABLE_MANAGEMENT = "inventorymanag";
+    private static final String COLUMN_MANAGEMENT_MANGID = "mangid";
+    private static final String COLUMN_MANAGEMENT_EVENTNAME = "eventname";
+    private static final String COLUMN_MANAGEMENT_EVENTDATE = "eventdate";
+
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "inventstory.db";
@@ -77,9 +85,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    /*
 
-
-    public void insertInventory(inventoryorg c){
+    //Called in 'OrgInsert' class to submit data into the database.
+     */
+    public void insertOrganization(inventoryorg c){
 
         //to insert to the database, use 'getWrite...' to make connection
         db = this.getWritableDatabase();
@@ -101,7 +111,28 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.insert(TABLE_ORGANIZATION, null, values);
 
     }
-    
+
+    public void insertManagement(inventorymanag c){
+
+        //to insert to the database, use 'getWrite...' to make connection
+        db = this.getWritableDatabase();
+        //create content values
+        ContentValues values = new ContentValues();
+
+        // '*' means everything
+        // fetch the data
+        String query = "select * from inventorymanag";
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount(); //what does this do
+
+        values.put(COLUMN_ORGANIZATION_ORGID, count);
+        values.put(COLUMN_ORGANIZATION_ITEMNAME, c.getEventdate());
+        values.put(COLUMN_ORGANIZATION_PRICE, c.getEventdate());
+
+        db.insert(TABLE_ORGANIZATION, null, values);
+
+    }
+
 
     /*
     //This is for login; it checks the uname and search for matching password
@@ -136,16 +167,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
  //change
         db.execSQL(TABLE_CREATE_CONTACTS);
         db.execSQL(TABLE_CREATE_ORGANIZATION);
-        this.db = db;
+        this.db = db; //
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String query = "DROP TABLE IF EXISTS " + TABLE_CONTACTS;
-        db.execSQL(query);
-        query = "DROP TABLE IF EXISTS " + TABLE_ORGANIZATION;
-        db.execSQL(query);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATION);
         this.onCreate(db);
 
     }

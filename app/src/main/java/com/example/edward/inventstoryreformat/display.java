@@ -51,9 +51,9 @@ public class display extends Activity{
     public void onManagButton(View v)
     {
         //check if it's the button for Borganization(which is button to access Org.)
-        if(v.getId() == R.id.BOrganization)
+        if(v.getId() == R.id.BManagement)
         {
-            Intent i = new Intent(display.this, Organization.class);
+            Intent i = new Intent(display.this, Management.class);
             startActivity(i);
         }
     }

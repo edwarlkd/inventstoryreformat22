@@ -1,7 +1,9 @@
 package com.example.edward.inventstoryreformat;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * Created by Edward on 4/5/2016.
@@ -14,4 +16,18 @@ public class Management extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.management);
     }
+
+    /*
+    This function is enforced when a 'Adding' button is pressed from 'management.xml'
+     */
+    public void onAddingButton(View v){
+
+        //check if it's the button for Borganization(which is button to access Org.)
+        if(v.getId() == R.id.BAddevents)
+        {
+            Intent i = new Intent(Management.this, ManagInsert.class);
+            startActivity(i);
+        }
+    }
+
 }

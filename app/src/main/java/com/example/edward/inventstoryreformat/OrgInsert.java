@@ -27,36 +27,38 @@ public class OrgInsert extends Activity {
      */
     public void onSubmitButton(View v)
     {
-        //we read data from signup
-        EditText itemname = (EditText)findViewById(R.id.TFitemname);
-        EditText price = (EditText)findViewById(R.id.TFprice);
-        EditText quantity = (EditText)findViewById(R.id.TFquantity);
-        EditText description = (EditText)findViewById(R.id.TFdescription);
+        if(v.getId()==R.id.BSubmitButton){
+            //we read data from signup
+            EditText itemname = (EditText) findViewById(R.id.TFitemname);
+            EditText price = (EditText) findViewById(R.id.TFprice);
+            EditText quantity = (EditText) findViewById(R.id.TFquantity);
+            EditText description = (EditText) findViewById(R.id.TFdescription);
 
-        //convert them to string values
-        String itemnamestr = itemname.getText().toString();
-        String pricestr = price.getText().toString();
-        String quantitystr = quantity.getText().toString();
-        String descriptonstr= description.getText().toString();
+            //convert them to string values
+            String itemnamestr = itemname.getText().toString();
+            String pricestr = price.getText().toString();
+            String quantitystr = quantity.getText().toString();
+            String descriptionstr = description.getText().toString();
 
-        //insert to the database
-        inventoryorg c = new inventoryorg();
-        c.setItemname(itemnamestr);
-        c.setPrice(pricestr);
-        c.setQuantity(quantitystr);
-        c.setDescription(descriptonstr);
+            //insert to the database
+            inventoryorg inv = new inventoryorg();
+            inv.setItemname(itemnamestr);
+            inv.setPrice(pricestr);
+            inv.setQuantity(quantitystr);
+            inv.setDescription(descriptionstr);
 
-        //this one needs to be enforced.
-       helper.insertInventory(c);
+            //this one needs to be enforced.
+            helper.insertOrganization(inv);
 
-        //popup message.
-        Toast pass = Toast.makeText(OrgInsert.this, "Successfully created.", Toast.LENGTH_SHORT);
-        pass.show();
+            //popup message.
+            Toast pass = Toast.makeText(OrgInsert.this, "Successfully created.", Toast.LENGTH_SHORT);
+            pass.show();
 
-        //'starting new activity.' To start, we need to make object of Intent class
-        //This takes back to the 'Organization' after new data is inserted.
-        Intent i = new Intent(OrgInsert.this, Organization.class);
-        startActivity(i);
+            //'starting new activity.' To start, we need to make object of Intent class
+            //This takes back to the 'Organization' after new data is inserted.
+            Intent i = new Intent(OrgInsert.this, Organization.class);
+            startActivity(i);
+        }
     }
 
     /*
@@ -66,7 +68,7 @@ public class OrgInsert extends Activity {
     public void onCancelButton(View v){
 
         //In 'OrgInsert' if the user cancelled out on inserting new item.
-        if(v.getId() == R.id.Bcancel)
+        if(v.getId() == R.id.BCancelButton)
         {
             Intent i = new Intent(OrgInsert.this, Organization.class);
             startActivity(i);
