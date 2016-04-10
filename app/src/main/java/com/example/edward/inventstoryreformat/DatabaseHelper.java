@@ -133,6 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+ //change
         db.execSQL(TABLE_CREATE_CONTACTS);
         db.execSQL(TABLE_CREATE_ORGANIZATION);
         this.db = db;
