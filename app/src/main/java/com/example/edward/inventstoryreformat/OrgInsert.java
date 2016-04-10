@@ -47,7 +47,7 @@ public class OrgInsert extends Activity {
         c.setDescription(descriptonstr);
 
         //this one needs to be enforced.
-//        helper.insertInventory(c);
+       helper.insertInventory(c);
 
         //popup message.
         Toast pass = Toast.makeText(OrgInsert.this, "Successfully created.", Toast.LENGTH_SHORT);

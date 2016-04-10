@@ -11,10 +11,7 @@ import android.content.Context;
  */
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "contacts.db";
-
-    private static final String TABLE_NAME = "contacts";
+    private static final String TABLE_CONTACTS = "contacts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_EMAIL = "email";
@@ -22,13 +19,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_UNAME = "uname";
     private static final String COLUMN_PASS = "pass";
 
+    //inventory
+    private static final String TABLE_ORGANIZATION = "inventoryorg";
+    private static final String COLUMN_ORGANIZATION_ORGID = "orgid";
+    private static final String COLUMN_ORGANIZATION_ITEMNAME = "itemname";
+    private static final String COLUMN_ORGANIZATION_PRICE = "price";
+    private static final String COLUMN_ORGANIZATION_QUANTITY = "quantity";
+    private static final String COLUMN_ORGANIZATION_DESCRIPTION = "description";
+
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "inventstory.db";
 
     //decare database variable
     SQLiteDatabase db;
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE = "create table contacts (id integer primary key not null , " +
+    private static final String TABLE_CREATE_CONTACTS = "create table contacts (id integer primary key not null , " +
         "name text not null , email text not null , phonenumber text not null , uname text not null , pass text not null);";
+
+    //create a table for to hold values.
+    private static final String TABLE_CREATE_ORGANIZATION = "create table inventoryorg (orgid integer primary key not null , " +
+            "itemname text not null , price text not null , quantity text not null , description text not null);";
 
     //constructor
     public DatabaseHelper(Context context)
@@ -62,25 +73,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_PASS, c.getPass());
 
         //insert the data in 'values' to the specified table.
-        db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_CONTACTS, null, values);
 
     }
 
-    /*
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "inventoryorg.db";
-    private static final String TABLE_NAME = "inventoryorg";
-    private static final String COLUMN_ITEMNAME = "itemname";
-    private static final String COLUMN_PRICE = "price";
-    private static final String COLUMN_QUANTITY = "quantity";
-    private static final String COLUMN_DESCRIPTION = "description";
 
-    //decare database variable
-    //SQLiteDatabase db2;
-
-    //create a table for to hold values.
-    private static final String TABLE_CREATE = "create table contacts (id integer primary key not null , " +
-            "name text not null , email text not null , phonenumber text not null , uname text not null , pass text not null);";
 
     public void insertInventory(inventoryorg c){
 
@@ -91,21 +88,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // '*' means everything
         // fetch the data
-        String query = "select * from contacts";
+        String query = "select * from inventoryorg";
         Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount();
+        int count = cursor.getCount(); //what does this do
 
+        values.put(COLUMN_ORGANIZATION_ORGID, count);
+        values.put(COLUMN_ORGANIZATION_ITEMNAME, c.getItemname());
+        values.put(COLUMN_ORGANIZATION_PRICE, c.getPrice());
+        values.put(COLUMN_ORGANIZATION_QUANTITY, c.getQuantity());
+        values.put(COLUMN_ORGANIZATION_DESCRIPTION, c.getDescription());
 
-        values.put(COLUMN_ID, count);
-        values.put(COLUMN_ITEMNAME, c.getItemname());
-        values.put(COLUMN_PRICE, c.getPrice());
-        values.put(COLUMN_QUANTITY, c.sgetQuantity());
-        values.put(COLUMN_DESCRIPTION, c.getDescription());
-
-        db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_ORGANIZATION, null, values);
 
     }
-    */
+    
 
     /*
     //This is for login; it checks the uname and search for matching password
@@ -115,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //used in MainActivity
     public String searchPass(String uname){
         db = this.getReadableDatabase();
-        String query = "select uname, pass from " + TABLE_NAME;
+        String query = "select uname, pass from " + TABLE_CONTACTS;
         Cursor cursor = db.rawQuery(query, null);
         String a, b;
         b = "not found";
@@ -137,14 +133,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_CREATE_CONTACTS);
+        db.execSQL(TABLE_CREATE_ORGANIZATION);
         this.db = db;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        String query = "DROP TABLE IF EXISTS " + TABLE_CONTACTS;
         db.execSQL(query);
+        query = "DROP TABLE IF EXISTS " + TABLE_ORGANIZATION;
+        db.execSQL(query);
+
         this.onCreate(db);
+
     }
 }

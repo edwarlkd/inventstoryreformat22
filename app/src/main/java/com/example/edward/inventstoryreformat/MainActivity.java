@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Parameter 'View' contains the button and we check its id to see if matches 'Blogin'
     //If the username and password matches, it let them to log-in successfully, else it will
     call an error message.
+
     //If the input values are correct, it will take users to next display menu.
      */
     public void onButtonClick(View v)
