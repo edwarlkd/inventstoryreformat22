@@ -136,7 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
  //change
         db.execSQL(TABLE_CREATE_CONTACTS);
         db.execSQL(TABLE_CREATE_ORGANIZATION);
-        this.db = db;
+        this.db = db; //
     }
 
     @Override
