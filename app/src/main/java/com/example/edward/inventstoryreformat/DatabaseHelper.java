@@ -46,8 +46,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         "name text not null , email text not null , phonenumber text not null , uname text not null , pass text not null);";
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_ORGANIZATION = "create table inventoryorg (orgid integer primary key not null , " +
+    private static final String TABLE_CREATE_ORGANIZATION = "create table inventoryorg (itemid integer primary key not null , " +
             "itemname text not null , price text not null , quantity text not null , description text not null);";
+
+    //create a table for to hold values.
+    private static final String TABLE_CREATE_MANAGEMENT = "create table inventorymanag (eventid integer primary key not null , " +
+            "eventname text not null , eventdate text not null);";
 
     //constructor
     public DatabaseHelper(Context context)
@@ -167,6 +171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
  //change
         db.execSQL(TABLE_CREATE_CONTACTS);
         db.execSQL(TABLE_CREATE_ORGANIZATION);
+        db.execSQL(TABLE_CREATE_MANAGEMENT);
         this.db = db; //
     }
 
@@ -174,6 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANAGEMENT);
         this.onCreate(db);
 
     }
