@@ -25,8 +25,8 @@ public class OrgInsert extends Activity {
     Parameter View v is needed to check the display.
     Once this button is pressed, it will send the data to the database.
      */
-    public void onSubmitButton(View v)
-    {
+    public void onSubmitButton(View v){
+
         if(v.getId()==R.id.BSubmitButton){
             //we read data from signup
             EditText itemname = (EditText) findViewById(R.id.TFitemname);
