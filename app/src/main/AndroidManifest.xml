@@ -21,6 +21,8 @@
         <activity android:name=".ManagInsert"></activity>
         <activity android:name=".Organization"></activity>
         <activity android:name=".OrgInsert"></activity>
+
+        <activity android:name=".Calendarviewmanag"></activity>
     </application>
 
 </manifest>

@@ -30,13 +30,14 @@ public class Management extends Activity {
         }
     }
 
-    public void onCalenderViewButton(View v)
+    public void onClickCalenderButton(View v)
     {
-        if(v.getId() == R.id.BAddevents)
+        if(v.getId() == R.id.BMcalendar)
         {
-            Intent i = new Intent(Management.this, Calenderview.class);
+            Intent i = new Intent(Management.this, Calendarviewmanag.class);
             startActivity(i);
         }
     }
+
 
 }

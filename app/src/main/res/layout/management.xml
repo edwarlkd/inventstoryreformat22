@@ -17,4 +17,12 @@
         android:id="@+id/BAddevents"
         android:layout_gravity="right"
         android:onClick="onAddEventsButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar display"
+        android:id="@+id/BMcalendar"
+        android:layout_gravity="right"
+        android:onClick="onClickCalenderButton" />
 </LinearLayout>
