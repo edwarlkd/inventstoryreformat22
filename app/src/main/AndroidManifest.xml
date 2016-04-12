@@ -18,6 +18,7 @@
         <activity android:name=".display"></activity>
         <activity android:name=".SignUp"></activity>
         <activity android:name=".Management"></activity>
+        <activity android:name=".ManagInsert"></activity>
         <activity android:name=".Organization"></activity>
         <activity android:name=".OrgInsert"></activity>
     </application>
