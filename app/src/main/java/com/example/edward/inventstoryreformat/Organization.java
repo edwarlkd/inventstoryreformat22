@@ -17,8 +17,7 @@ public class Organization extends Activity{
         setContentView(R.layout.organization);
 
         //fetch this string value
-        String username = getIntent().getStringExtra("Name");
-
+        //String username = getIntent().getStringExtra("Name");
         //examples: (not used nor needed)
         //this is an example simply insert our username
         //TextView tv = (TextView)findViewById(R.id.TVusername);

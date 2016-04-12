@@ -20,7 +20,7 @@ public class Management extends Activity {
     /*
     This function is enforced when a 'Adding' button is pressed from 'management.xml'
      */
-    public void onAddingButton(View v){
+    public void onAddEventsButton(View v){
 
         //check if it's the button for Borganization(which is button to access Org.)
         if(v.getId() == R.id.BAddevents)

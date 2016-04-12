@@ -84,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // '*' means everything
         // fetch the data
-        String query = "select * from contacts";
+        String query = "select * from 'contacts'";
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount();
 
@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Caused by: android.database.sqlite.SQLiteException:
         no such table: inventoryorg (code 1): , while compiling: select * from inventoryorg
          */
-        String query = "select * from inventoryorgs";
+        String query = "select * from 'inventoryorgs'";
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount(); //what does this do
 
