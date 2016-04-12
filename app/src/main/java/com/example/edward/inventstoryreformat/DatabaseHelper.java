@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_PASS = "pass";
 
     //inventory
-    private static final String TABLE_ORGANIZATION = "inventoryorg";
+    private static final String TABLE_ORGANIZATIONS = "inventoryorgs";
     private static final String COLUMN_ORGANIZATION_ITEMID = "itemid";
     private static final String COLUMN_ORGANIZATION_ITEMNAME = "itemname";
     private static final String COLUMN_ORGANIZATION_PRICE = "price";
@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_ORGANIZATION_DESCRIPTION = "description";
 
     //management
-    private static final String TABLE_MANAGEMENT = "inventorymanag";
+    private static final String TABLE_MANAGEMENTS = "inventorymanags";
     private static final String COLUMN_MANAGEMENT_EVENTID = "eventid";
     private static final String COLUMN_MANAGEMENT_EVENTNAME = "eventname";
     private static final String COLUMN_MANAGEMENT_EVENTDATE = "eventdate";
@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             + COLUMN_PASS + " text not null" + ");";
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_ORGANIZATION = "create table " + TABLE_ORGANIZATION
+    private static final String TABLE_CREATE_ORGANIZATIONS = "create table " + TABLE_ORGANIZATIONS
             + COLUMN_ORGANIZATION_ITEMID + " integer primary key not null , "
             + COLUMN_ORGANIZATION_ITEMNAME + " text not null , "
             + COLUMN_ORGANIZATION_PRICE + " text not null , "
@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             + COLUMN_ORGANIZATION_DESCRIPTION + " text not null " + ");";
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_MANAGEMENT = "create table " + TABLE_MANAGEMENT
+    private static final String TABLE_CREATE_MANAGEMENTS = "create table " + TABLE_MANAGEMENTS
             + COLUMN_MANAGEMENT_EVENTID + " integer primary key not null , "
             + COLUMN_MANAGEMENT_EVENTNAME + " text not null , "
             + COLUMN_MANAGEMENT_EVENTDATE + " text not null " + ");";
@@ -113,7 +113,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // '*' means everything
         // fetch the data
-        String query = "select * from inventoryorg";
+        /*
+        Caused by: android.database.sqlite.SQLiteException:
+        no such table: inventoryorg (code 1): , while compiling: select * from inventoryorg
+         */
+        String query = "select * from inventoryorgs";
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount(); //what does this do
 
@@ -123,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_ORGANIZATION_QUANTITY, c.getQuantity());
         values.put(COLUMN_ORGANIZATION_DESCRIPTION, c.getDescription());
 
-        db.insert(TABLE_ORGANIZATION, null, values);
+        db.insert(TABLE_ORGANIZATIONS, null, values);
 
     }
 
@@ -136,7 +140,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // '*' means everything
         // fetch the data
-        String query = "select * from inventorymanag";
+        String query = "select * from inventorymanags";
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount(); //what does this do
 
@@ -144,7 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_MANAGEMENT_EVENTNAME, c.getEventname());
         values.put(COLUMN_MANAGEMENT_EVENTDATE, c.getEventdate());
 
-        db.insert(TABLE_MANAGEMENT, null, values);
+        db.insert(TABLE_MANAGEMENTS, null, values);
 
     }
 
@@ -181,16 +185,16 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
  //change
         db.execSQL(TABLE_CREATE_CONTACTS);
-        db.execSQL(TABLE_CREATE_ORGANIZATION);
-        db.execSQL(TABLE_CREATE_MANAGEMENT);
-        this.db = db; //
+        db.execSQL(TABLE_CREATE_ORGANIZATIONS);
+        db.execSQL(TABLE_CREATE_MANAGEMENTS);
+        this.db = db;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATION);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANAGEMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANAGEMENTS);
         this.onCreate(db);
 
     }
