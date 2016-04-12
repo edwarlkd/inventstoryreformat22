@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //inventory
     private static final String TABLE_ORGANIZATION = "inventoryorg";
-    private static final String COLUMN_ORGANIZATION_ORGID = "orgid";
+    private static final String COLUMN_ORGANIZATION_ITEMID = "itemid";
     private static final String COLUMN_ORGANIZATION_ITEMNAME = "itemname";
     private static final String COLUMN_ORGANIZATION_PRICE = "price";
     private static final String COLUMN_ORGANIZATION_QUANTITY = "quantity";
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //management
     private static final String TABLE_MANAGEMENT = "inventorymanag";
-    private static final String COLUMN_MANAGEMENT_MANGID = "mangid";
+    private static final String COLUMN_MANAGEMENT_EVENTID = "eventid";
     private static final String COLUMN_MANAGEMENT_EVENTNAME = "eventname";
     private static final String COLUMN_MANAGEMENT_EVENTDATE = "eventdate";
 
@@ -42,16 +42,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     SQLiteDatabase db;
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_CONTACTS = "create table contacts (id integer primary key not null , " +
-        "name text not null , email text not null , phonenumber text not null , uname text not null , pass text not null);";
+    private static final String TABLE_CREATE_CONTACTS = "create table " + TABLE_CONTACTS
+            + COLUMN_ID + " integer primary key not null, "
+            + COLUMN_NAME + " text not null , "
+            + COLUMN_EMAIL + " text not null , "
+            + COLUMN_PHONENUMBER + " text not null , "
+            + COLUMN_UNAME + " text not null , "
+            + COLUMN_PASS + " text not null" + ");";
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_ORGANIZATION = "create table inventoryorg (itemid integer primary key not null , " +
-            "itemname text not null , price text not null , quantity text not null , description text not null);";
+    private static final String TABLE_CREATE_ORGANIZATION = "create table " + TABLE_ORGANIZATION
+            + COLUMN_ORGANIZATION_ITEMID + " integer primary key not null , "
+            + COLUMN_ORGANIZATION_ITEMNAME + " text not null , "
+            + COLUMN_ORGANIZATION_PRICE + " text not null , "
+            + COLUMN_ORGANIZATION_QUANTITY + " text not null , "
+            + COLUMN_ORGANIZATION_DESCRIPTION + " text not null " + ");";
 
     //create a table for to hold values.
-    private static final String TABLE_CREATE_MANAGEMENT = "create table inventorymanag (eventid integer primary key not null , " +
-            "eventname text not null , eventdate text not null);";
+    private static final String TABLE_CREATE_MANAGEMENT = "create table " + TABLE_MANAGEMENT
+            + COLUMN_MANAGEMENT_EVENTID + " integer primary key not null , "
+            + COLUMN_MANAGEMENT_EVENTNAME + " text not null , "
+            + COLUMN_MANAGEMENT_EVENTDATE + " text not null " + ");";
 
     //constructor
     public DatabaseHelper(Context context)
@@ -106,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount(); //what does this do
 
-        values.put(COLUMN_ORGANIZATION_ORGID, count);
+        values.put(COLUMN_ORGANIZATION_ITEMID, count);
         values.put(COLUMN_ORGANIZATION_ITEMNAME, c.getItemname());
         values.put(COLUMN_ORGANIZATION_PRICE, c.getPrice());
         values.put(COLUMN_ORGANIZATION_QUANTITY, c.getQuantity());
@@ -129,11 +140,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount(); //what does this do
 
-        values.put(COLUMN_ORGANIZATION_ORGID, count);
-        values.put(COLUMN_ORGANIZATION_ITEMNAME, c.getEventdate());
-        values.put(COLUMN_ORGANIZATION_PRICE, c.getEventdate());
+        values.put(COLUMN_MANAGEMENT_EVENTID, count);
+        values.put(COLUMN_MANAGEMENT_EVENTNAME, c.getEventname());
+        values.put(COLUMN_MANAGEMENT_EVENTDATE, c.getEventdate());
 
-        db.insert(TABLE_ORGANIZATION, null, values);
+        db.insert(TABLE_MANAGEMENT, null, values);
 
     }
 
