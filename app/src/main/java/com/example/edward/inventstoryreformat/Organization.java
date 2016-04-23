@@ -51,13 +51,14 @@ public class Organization extends Activity{
     //long press on a item, pop up comes up with 4 choice.
     //view, edit, delete, share
 
-
-//'orginst'.
-//'Submit' for organization. Connect and store in the database.
-//Further for organization, create a table to display charts.
-//Edit after accessing an item
-//multiple selection to delete or share.
-//long press -> view,edit,delete, share
+    public void onClickBackorg(View v)
+    {
+        if(v.getId() == R.id.Bbackorg)
+        {
+            Intent i = new Intent(Organization.this, display.class);
+            startActivity(i);
+        }
+    }
 
 
 }

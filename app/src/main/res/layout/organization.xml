@@ -38,13 +38,12 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="right" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="(Here, there will be a table or sort to display inventory"
-        android:id="@+id/textView12"
-        android:layout_weight="0.34" />
+        android:text="Back"
+        android:id="@+id/Bbackorg"
+        android:onClick="onClickBackorg" />
 
 
 </LinearLayout>

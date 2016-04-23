@@ -57,4 +57,16 @@ public class display extends Activity{
             startActivity(i);
         }
     }
+
+    //log off, send back to main menu.
+    public void onClickLogoffButton(View v)
+    {
+        //check if it's the button for Borganization(which is button to access Org.)
+        if(v.getId() == R.id.BLogoff)
+        {
+            Intent i = new Intent(display.this, MainActivity.class);
+            startActivity(i);
+        }
+    }
+
 }
