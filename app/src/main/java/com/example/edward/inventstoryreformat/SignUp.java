@@ -77,5 +77,14 @@ public class SignUp extends Activity {
 
     }
 
+    public void onClickCancelsignup(View v)
+    {
+        if(v.getId() == R.id.BCancelsignup)
+        {
+            Intent i = new Intent(SignUp.this, MainActivity.class);
+            startActivity(i);
+        }
+    }
+
 
 }

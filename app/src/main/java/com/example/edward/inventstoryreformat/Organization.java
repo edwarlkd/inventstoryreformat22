@@ -60,5 +60,13 @@ public class Organization extends Activity{
         }
     }
 
+    public void onClickShowlist(View v)
+    {
+        if(v.getId() == R.id.BShowlist)
+        {
+            Intent i = new Intent(Organization.this, Organlist.class);
+            startActivity(i);
+        }
+    }
 
 }
