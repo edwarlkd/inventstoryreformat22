@@ -48,4 +48,13 @@ public class Management extends Activity {
         }
     }
 
+    public void onClicklistdisplay(View v)
+    {
+        if(v.getId() == R.id.BListmanag)
+        {
+            Intent i = new Intent(Management.this, Managlist.class);
+            startActivity(i);
+        }
+    }
+
 }

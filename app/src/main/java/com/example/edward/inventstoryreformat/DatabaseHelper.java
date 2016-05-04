@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //create a table for to hold values.
     private static final String TABLE_CREATE_ORGANIZATIONS = " create table " + TABLE_ORGANIZATIONS
-            + COLUMN_ORGANIZATION_ITEMID + " integer not null , "
+            + COLUMN_ORGANIZATION_ITEMID + " integer primary key AUTOINCREMENT , "
             + COLUMN_ORGANIZATION_ITEMNAME + " text not null , "
             + COLUMN_ORGANIZATION_PRICE + " text not null , "
             + COLUMN_ORGANIZATION_QUANTITY + " text not null , "
@@ -60,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //create a table for to hold values.
     private static final String TABLE_CREATE_MANAGEMENTS = " create table " + TABLE_MANAGEMENTS
-            + COLUMN_MANAGEMENT_EVENTID + " integer not null , "
+            + COLUMN_MANAGEMENT_EVENTID + " integer primary key AUTOINCREMENT , "
             + COLUMN_MANAGEMENT_EVENTNAME + " text not null , "
             + COLUMN_MANAGEMENT_EVENTDATE + " text not null " + ");";
 
@@ -117,11 +117,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Caused by: android.database.sqlite.SQLiteException:
         no such table: inventoryorg (code 1): , while compiling: select * from inventoryorg
          */
-        String query = "select * from 'organizations' ";
-        Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount(); //what does this do
 
-        values.put(COLUMN_ORGANIZATION_ITEMID, count);
+        //This never work, autoincrement to avoid crashing.
+        //String query = "select * from 'organizations' ";
+        //Cursor cursor = db.rawQuery(query, null);
+        //int count = cursor.getCount(); //what does this do
+
+        //values.put(COLUMN_ORGANIZATION_ITEMID, count);
         values.put(COLUMN_ORGANIZATION_ITEMNAME, c.getItemname());
         values.put(COLUMN_ORGANIZATION_PRICE, c.getPrice());
         values.put(COLUMN_ORGANIZATION_QUANTITY, c.getQuantity());
@@ -140,11 +142,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         // '*' means everything
         // fetch the data
-        String query = "select * from managements ";
-        Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount(); //what does this do
+        //String query = "select * from managements ";
+        //Cursor cursor = db.rawQuery(query, null);
+        //int count = cursor.getCount(); //what does this do
 
-        values.put(COLUMN_MANAGEMENT_EVENTID, count);
+        //values.put(COLUMN_MANAGEMENT_EVENTID, count);
         values.put(COLUMN_MANAGEMENT_EVENTNAME, c.getEventname());
         values.put(COLUMN_MANAGEMENT_EVENTDATE, c.getEventdate());
 

@@ -41,6 +41,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/mycustombutton"
+        android:textColor="@color/colorPrimary"
+        android:onClick="onClickShowlist"
+        android:padding="10dp"
+        android:text="List"
+        android:id="@+id/BShowlist"
+        android:layout_below="@+id/Blogin"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="right" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/Bbackorg"
         android:onClick="onClickBackorg" />
