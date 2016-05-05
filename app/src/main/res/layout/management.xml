@@ -58,4 +58,12 @@
         android:id="@+id/Bbackmanag"
         android:onClick="onClickBackmanag" />
 
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
