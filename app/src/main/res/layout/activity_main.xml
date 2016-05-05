@@ -93,4 +93,14 @@
         android:layout_below="@+id/Blogin"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testlist"
+        android:id="@+id/Btestlist"
+        android:onClick="onClicktestlist"
+        android:layout_below="@+id/Blogin"
+        android:layout_toRightOf="@+id/Bsignup"
+        android:layout_toEndOf="@+id/Bsignup" />
+
 </RelativeLayout>

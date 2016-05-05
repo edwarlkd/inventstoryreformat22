@@ -24,6 +24,8 @@
         <activity android:name=".OrgInsert"></activity>
         <activity android:name=".Organlist"></activity>
         <activity android:name=".Calendarviewmanag"></activity>
+
+        <activity android:name=".Testlist"></activity>
     </application>
 
 </manifest>

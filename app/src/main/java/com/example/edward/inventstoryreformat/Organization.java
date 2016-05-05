@@ -69,4 +69,13 @@ public class Organization extends Activity{
         }
     }
 
+    public void onClicktestlist(View v)
+    {
+        if(v.getId() == R.id.Btestlist)
+        {
+            Intent i = new Intent(Organization.this, Testlist.class);
+            startActivity(i);
+        }
+    }
+
 }

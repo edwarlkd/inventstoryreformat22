@@ -69,4 +69,15 @@ public class display extends Activity{
         }
     }
 
+    public void onClicktestlist2(View v)
+    {
+        //check if it's the button for Borganization(which is button to access Org.)
+        if(v.getId() == R.id.Btestlist2)
+        {
+            Intent i = new Intent(display.this, Testlist.class);
+            startActivity(i);
+        }
+    }
+
+
 }
