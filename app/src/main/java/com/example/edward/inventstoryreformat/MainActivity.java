@@ -60,14 +60,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClicktestlist(View v)
-    {
-        //check if it's the button for Borganization(which is button to access Org.)
-        if(v.getId() == R.id.Btestlist)
-        {
-            Intent i = new Intent(MainActivity.this, Testlist.class);
-            startActivity(i);
-        }
-    }
 
 }

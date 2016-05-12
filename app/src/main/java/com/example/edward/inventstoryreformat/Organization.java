@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -11,20 +15,47 @@ import android.widget.TextView;
  */
 public class Organization extends Activity{
 
+    private ListView mListView1, mListView2;
+
+    private String [] data1 ={"Apple", "Orange", "Banana", "Pineapple", "Watermelon", "Kiwi"};
+    private String [] data2 ={"Dr. Pepper", "Orange Juice", "Apple Juice", "Jack Daniel", "Coke", "Pepsi"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.organization);
 
-        //fetch this string value
-        //String username = getIntent().getStringExtra("Name");
-        //examples: (not used nor needed)
-        //this is an example simply insert our username
-        //TextView tv = (TextView)findViewById(R.id.TVusername);
-        //tv.setText(username);
+        mListView1 = (ListView)findViewById(R.id.listView1);
+        mListView2 = (ListView)findViewById(R.id.listView2);
 
+        mListView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data1));
+        mListView2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data2));
+
+        ListUtils.setDynamicHeight(mListView1);
+        ListUtils.setDynamicHeight(mListView2);
     }
 
+
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
+    }
     /*
     This is for when users want to add more events and other schedules.
     //To be implemented further...
@@ -60,22 +91,6 @@ public class Organization extends Activity{
         }
     }
 
-    public void onClickShowlist(View v)
-    {
-        if(v.getId() == R.id.BShowlist)
-        {
-            Intent i = new Intent(Organization.this, Organlist.class);
-            startActivity(i);
-        }
-    }
 
-    public void onClicktestlist(View v)
-    {
-        if(v.getId() == R.id.Btestlist)
-        {
-            Intent i = new Intent(Organization.this, Testlist.class);
-            startActivity(i);
-        }
-    }
 
 }
