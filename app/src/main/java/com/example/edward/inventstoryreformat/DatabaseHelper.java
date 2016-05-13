@@ -41,9 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //decare database variable
     SQLiteDatabase db;
 
+    /*
     //create a table for to hold values.
     private static final String TABLE_CREATE_CONTACTS = "create table " + TABLE_CONTACTS
-            + COLUMN_ID + " integer primary key not null, "
+            + COLUMN_ID + "( integer primary key not null, "
             + COLUMN_NAME + " text not null , "
             + COLUMN_EMAIL + " text not null , "
             + COLUMN_PHONENUMBER + " text not null , "
@@ -52,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //create a table for to hold values.
     private static final String TABLE_CREATE_ORGANIZATIONS = " create table " + TABLE_ORGANIZATIONS
-            + COLUMN_ORGANIZATION_ITEMID + " integer primary key AUTOINCREMENT , "
+            + COLUMN_ORGANIZATION_ITEMID + " (integer primary key AUTOINCREMENT , "
             + COLUMN_ORGANIZATION_ITEMNAME + " text not null , "
             + COLUMN_ORGANIZATION_PRICE + " text not null , "
             + COLUMN_ORGANIZATION_QUANTITY + " text not null , "
@@ -60,9 +61,32 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //create a table for to hold values.
     private static final String TABLE_CREATE_MANAGEMENTS = " create table " + TABLE_MANAGEMENTS
-            + COLUMN_MANAGEMENT_EVENTID + " integer primary key AUTOINCREMENT , "
+            + COLUMN_MANAGEMENT_EVENTID + " (integer primary key AUTOINCREMENT , "
             + COLUMN_MANAGEMENT_EVENTNAME + " text not null , "
             + COLUMN_MANAGEMENT_EVENTDATE + " text not null " + ");";
+    */
+///////////////////
+
+    private static final String TABLE_CREATE_CONTACTS =
+            " create table " + TABLE_CONTACTS +
+                    " (id integer primary key autoincrement," +
+                    " name text not null, email text not null, phonenumber text not null, uname text not null, pass text not null);";
+
+    private static final String TABLE_CREATE_ORGANIZATIONS =
+            " create table " + TABLE_ORGANIZATIONS +
+                    " (itemid integer primary key autoincrement," +
+                    " itemname text not null, price text not null, quantity text not null, description text not null );";
+
+    private static final String TABLE_CREATE_MANAGEMENTS =
+            " create table " + TABLE_MANAGEMENTS +
+                    " (eventid integer primary key autoincrement," +
+                    " eventname text not null, eventdate text not null);";
+
+
+
+
+    /////////////////////
+
 
     //constructor
     public DatabaseHelper(Context context)
@@ -186,21 +210,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
  //change
-        //db.execSQL(TABLE_CREATE_CONTACTS);
-        //db.execSQL(TABLE_CREATE_ORGANIZATIONS);
-        //db.execSQL(TABLE_CREATE_MANAGEMENTS);
-        db.execSQL(TABLE_CREATE_CONTACTS+TABLE_CREATE_ORGANIZATIONS+TABLE_CREATE_MANAGEMENTS);
-        this.db = db;
+        db.execSQL(TABLE_CREATE_CONTACTS);
+        db.execSQL(TABLE_CREATE_ORGANIZATIONS);
+        db.execSQL(TABLE_CREATE_MANAGEMENTS);
+        //this.db = db;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    //    db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
-      //  db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATIONS);
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANAGEMENTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS
-                + " DROP TABLE IF EXISTS " + TABLE_ORGANIZATIONS
-                + " DROP TABLE IF EXISTS " + TABLE_MANAGEMENTS); //doesn't work.
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORGANIZATIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANAGEMENTS);
         this.onCreate(db);
 
     }

@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else // show toast message that credential doesn't match.
             {
-                Toast temp = Toast.makeText(MainActivity.this, "Username and password don't match", Toast.LENGTH_SHORT);
-                temp.show();
+                //Toast temp = Toast.makeText(MainActivity.this, "Username and password don't match", Toast.LENGTH_SHORT);
+                //temp.show();
             }
 
         }
