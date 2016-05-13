@@ -1,15 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#3e8bc0">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:fillViewport="true" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dip" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Management"
-        android:id="@+id/textView9" />
+        android:id="@+id/textView9"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -31,7 +36,7 @@
         android:textColor="@color/colorPrimary"
         android:onClick="onClickCalenderButton"
         android:padding="10dp"
-        android:text="Calendar display"
+        android:text="Calendar"
         android:id="@+id/BMcalendar"
         android:layout_below="@+id/Blogin"
         android:layout_centerHorizontal="true"
@@ -45,7 +50,7 @@
         android:textColor="@color/colorPrimary"
         android:onClick="onClicklistdisplay"
         android:padding="10dp"
-        android:text="List Display"
+        android:text="List"
         android:id="@+id/BListmanag"
         android:layout_below="@+id/Blogin"
         android:layout_centerHorizontal="true"
@@ -58,12 +63,35 @@
         android:id="@+id/Bbackmanag"
         android:onClick="onClickBackmanag" />
 
-    <CalendarView
-        android:id="@+id/calendarView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="Events" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:background="#B29090" >
+    </ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center_vertical"
+        android:text="Deadline" />
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:background="#4A9C67" >
+    </ListView>
 </LinearLayout>
+
+</ScrollView>
